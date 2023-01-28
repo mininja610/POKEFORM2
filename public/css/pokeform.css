@@ -1,0 +1,117 @@
+a{
+    text-decoration: none;
+}
+
+body{
+font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3','メイリオ', Meiryo,'ＭＳ ゴシック',sans-serif;
+    
+    background-color: #f1eee7;
+    
+}
+.blog-header{
+    background-color: white;
+}
+
+
+/*header　*/
+
+
+.menu_list{
+    list-style: none;
+    display: flex;
+   color: black;
+   background-color: #ffae27;
+}
+.menu{
+  flex-grow: 1;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.6s;
+}
+.menu a{
+    text-decoration: none;
+    color: inherit;
+}
+.menu + .menu{
+  border-left: 1px solid #000;
+}
+
+.menu:hover {
+  color:#ff9607;
+  text-decoration: underline;
+}
+
+
+
+/*party.blade */
+.create_btn{
+    font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  background-color: white;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  border: 2px solid #ffae27;
+  text-decoration: none;
+  color: #ffae27;
+}
+.create_btn:hover{
+    background: #ffae27;
+  color: #fff;
+}
+.create_btn:active{
+    top: 2px;
+}
+
+.parties{
+    background-color: white;
+}
+.party{
+    list-style: none;
+}
+.party + .party{
+    border-top:1px solid #666;
+}
+.show_btn a{
+     background: #fcf8e4;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 260px;
+    padding: 10px 25px;
+    color: #ffae27;
+    transition: 0.3s ease-in-out;
+    
+}
+.show_btn a:hover{
+    background: #ffae27;
+    color: white;
+}
+.show_btn a:after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid #313131;
+    border-right: 3px solid #313131;
+    transform: rotate(45deg) translateY(-50%);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    border-radius: 1px;
+    transition: 0.3s ease-in-out;
+}
+.show_btn a:hover:after {
+    border-color: #FFF;
+}
+
+/*footer*/
+.blog_footer{
+    background-color:#1a1a1a; 
+}
