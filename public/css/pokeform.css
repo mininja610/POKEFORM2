@@ -1,3 +1,6 @@
+li{
+    list-style: none;
+}
 a{
     text-decoration: none;
 }
@@ -9,7 +12,7 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
     
 }
 .blog-header{
-    background-color: white;
+ background-color: white
 }
 
 
@@ -45,6 +48,10 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
 
 
 /*party.blade */
+.content-title{
+    text-align: center;
+  
+}
 .create_btn{
     font-family: "Roboto", sans-serif;
   font-weight: 500;
@@ -109,6 +116,40 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
 }
 .show_btn a:hover:after {
     border-color: #FFF;
+}
+
+/*party.show.blade*/
+.party_info{
+    background-color: white;
+}
+.type{
+    background-color: gray;       /* 背景色の指定 */
+   border-radius: 1em;          /* 角丸の指定 */
+   color: white
+}
+
+/*create.party.blade*/
+.create-party{
+    background-color: white;
+}
+.create-border{
+     border-bottom: dashed 2px #6594e0;
+}
+.btn-submit{
+display       : inline-block;
+  border-radius : 10%;          /* 角丸       */
+  
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 14px;   /* 余白       */
+  background    : #007FFD;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  border: none;
+}
+/*edit.blade.*/
+.edit-party{
+    background-color: white;
 }
 
 /*footer*/
