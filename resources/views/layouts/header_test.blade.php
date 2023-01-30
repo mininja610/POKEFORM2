@@ -9,10 +9,10 @@
         </div>
       
       <ul class="menu_list py-2">
-    <li class="menu fs-4 fw-bolder"><a href="">パーティー管理</a></li>
+    <li class="menu fs-4 fw-bolder"><a href="/parties">パーティー管理</a></li>
     <li class="menu fs-4 fw-bolder"><a href="">ダメージ計算</a></li>  
     <li class="menu fs-4 fw-bolder"><a href="">ランキング</a></li>
-    <li class="menu fs-4 fw-bolder"><a href="">ユーザー設定</a></li>
+    <li class="menu fs-4 fw-bolder"><a href="">login/ユーザー設定</a></li>
       </ul>
       
       </header>

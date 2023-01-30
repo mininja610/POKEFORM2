@@ -1,43 +1,44 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>Blog</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    <x-app-layout>
-    <x-slot name="header">
-        　パーティー管理
-    </x-slot>
-    <body>
-        <h1>パーティー情報</h1>
-        <div class='party'>
+@extends('bootstrap')
+
+ @section('title','POKEFORM_select')
+    @section('content')
+        <h1 class="content-title fw-bold">パーティー情報</h1>
+        <div class='party_info container px-3 border border-5 rounded-3 border-white'>
             @if(Auth::user()->can('view', $party))
-            <div class='party'>
-                <h2 class='title'>{{ $party->title }}</h2>
-                <p class='body'>{{ $party->content }}</p>
-            <div class="party_pokemon">
-                <h3>ポケモン</h3>
-                <ul id = 'pokemon_list'>
+            
+                <h2 class='title fs-1 fw-bold'>「{{ $party->title }}」</h2>
+                <p class='body fs-2 text-truncate'>{{ $party->content }}</p>
+            <div class="party_pokemon container">
+                <div class = 'pokemon_list row justify-content-md-center'>
                     @foreach($pokemons_id as $pokemon)
                     @foreach($pokemon->pokemons as $pokemon_name)
-                         <li class = 'pokemon'>
-                             
-                             <p>{{$pokemon_name->name}}</p><h3 class='type_list'>{{$pokemon_name->primary_type}},{{$pokemon_name->secondary_type}}</h3>
-                        </li>
+                         <div class = 'pokemon_info col-lg-2 col-md-4 '>
+                             <div class="poke mx-auto"> 
+                             <p class="mx-auto">{{$pokemon_name->en_name}}</p>
+                             <div class="imgarea">
+                             <img src="<?php echo $pokemon_name['front_default'] ?>" alt="">
+                             </div>
+                             <div class="type_list row">
+                             <h3 class='type fs-5 col text-left'>{{$pokemon_name->primary_type}}</h3><h3 class="type fs-5 text-left">{{$pokemon_name->secondary_type}}</h3>
+                             </div>
+                             </div>
+                        </div>
                    @endforeach
                    @endforeach
-                </ul>    
+                </div>
+                <div class="row">
+                    <div class="show_btn col-2">
+             <a href="/parties/{{ $party->id }}">戻る</a>
+             </div>
+              
+             
+                <div class="show_btn col-4 offset-6 mr-2">
+            <div class="edit text-nowrap"><a href="/parties/{{ $party->id }}/edit">記録を付ける</a></div>
             </div>
-            <div class="edit"><a href="/parties/{{ $party->id }}/edit">編集する</a></div>
+            
+            </div>
             </div>
             @endif
         </div>
-       <div class="footer">
-            <a href="/parties">戻る</a>
-        
-        </div>
-    </body>
-    </x-app-layout>
-</html>
+      
+    @endsection

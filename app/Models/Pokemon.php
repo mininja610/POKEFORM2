@@ -56,5 +56,9 @@ class Pokemon extends Model
     public function user()
 {
     return $this->belongsTo(User::class);
-}                
+}  
+    public function select_pokemons()   
+{
+    return $this->hasMany(Select_pokemon::class);  
+}
 }

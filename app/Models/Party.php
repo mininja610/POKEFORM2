@@ -32,4 +32,10 @@ public function getByLimit(int $limit_count = 5)
     return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
 }
 
+public function select_pokemons()   
+{
+    return $this->hasMany(Select_pokemon::class);  
+}
+
+
 }
