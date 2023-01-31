@@ -9,15 +9,26 @@
                 <h2 class='title fs-1 fw-bold'>「{{ $party->title }}」</h2>
                 <p class='body fs-2 text-truncate'>{{ $party->content }}</p>
             <div class="party_pokemon container">
-                <div class = 'pokemon_list row justify-content-md-center'>
-                    @foreach($pokemons_id as $pokemon)
+                <div class = 'pokemon_list row justify-content-md-center'> 
+                @foreach($pokemons_id as $pokemon)
+                    {{--<?php  $p_id= $pokemon->pokemons->pluck('id');
+                        foreach($p_id as $i){
+        
+                         $count[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
+                                                            ->orWhere('second_pokemon_id',$i)
+                                                            ->orWhere('third_pokemon_id',$i)
+                                                                     ->count();?>   ここで選出率を記載したい--}}
                     @foreach($pokemon->pokemons as $pokemon_name)
+                    
                          <div class = 'pokemon_info col-lg-2 col-md-4 '>
                              <div class="poke mx-auto"> 
                              <p class="mx-auto">{{$pokemon_name->en_name}}</p>
                              <div class="imgarea">
                              <img src="<?php echo $pokemon_name['front_default'] ?>" alt="">
+                             
+                             <div class="probability text-align-center"><p></p></div>
                              </div>
+                             
                              <div class="type_list row">
                              <h3 class='type fs-5 col text-left'>{{$pokemon_name->primary_type}}</h3><h3 class="type fs-5 text-left">{{$pokemon_name->secondary_type}}</h3>
                              </div>
@@ -25,6 +36,7 @@
                         </div>
                    @endforeach
                    @endforeach
+                  
                 </div>
                 <div class="row">
                     <div class="show_btn col-2">
@@ -37,14 +49,26 @@
                 <div class="show_btn col-3 offset-1">
             <div class="edit text-nowrap"><a href="/parties/{{ $party->id }}/edit">編集する</a></div>
             </div>
-            
-            </div>
-            </div>
             @endif
+            </div>
+            </div>
+           
         </div>
-        
-        
-        
+                                    {{-- フラッシュメッセージ始まり --}}
+                            {{-- 成功の時 --}}
+                            @if (session('successMessage'))
+                              <div class="alert alert-success text-center">
+                                {{ session('successMessage') }}
+                              </div> 
+                            @endif
+                            {{-- 失敗の時 --}}
+                            @if (session('errorMessage'))
+                              <div class="alert alert-danger text-center">
+                                {{ session('errorMessage') }}
+                              </div> 
+                            @endif
+                            {{-- フラッシュメッセージ終わり --}}
+        {{-- モーダル部分 --}}
         <div class="modal fade" id="SelectModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     //form-inline:文字の量に合わせてモーダルの大きさが変化する
     <form role="form" class="form-inline" method="post" action="">
@@ -64,7 +88,7 @@
                             <p class="mx-auto">{{$pokemon_img->en_name}}</p>
                              <div class="imgarea">
                              <img src="<?php echo $pokemon_img['front_default'] ?>" alt="">
-                             <div class = "probability"></div>
+                             <div class = "probability"><p><?php $party ?></p></div>
                              </div>
                              <div class="check">
                                  <input class="" type="checkbox"  name="select_id[]" value="{{$pokemon_img->id}}">

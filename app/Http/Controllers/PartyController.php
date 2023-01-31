@@ -24,8 +24,20 @@ class PartyController extends Controller
     {
         $id = $party->id;
         $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
+        
+         foreach($pokemons_id as $pokemon){
+             $p_id= $pokemon->pokemons->pluck('id');
+        foreach($p_id as $i){
+        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
+                                            ->orWhere('second_pokemon_id',$i)
+                                            ->orWhere('third_pokemon_id',$i)
+                                                     ->count();}}//選出された回数
+        $match = $party->match;//総試合数                                             
+        
       
-        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id]);
+        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id,'counts'=>$counts,'match'=>$match]);
+        
+       
       
       //dd($pokemons_id);
     //return view('pokemons.show', ['pokemons_id' => $pokemons_id]);
@@ -58,7 +70,7 @@ class PartyController extends Controller
     
     public function edit(Party $party){
         $id = $party->id;
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
+        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();//
         
          foreach($pokemons_id as $pokemon){
         
@@ -86,7 +98,19 @@ class PartyController extends Controller
         //showに渡すデータ
         $id = $party->id;
         $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
-        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id]);
+        
+        foreach($pokemons_id as $pokemon){
+             $p_id= $pokemon->pokemons->pluck('id');
+        foreach($p_id as $i){
+        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
+                                            ->orWhere('second_pokemon_id',$i)
+                                            ->orWhere('third_pokemon_id',$i)
+                                                     ->count();//選出された回数
+        }
+        }
+        $match = $party->match;//総試合数
+       
+        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id,'counts'=>$counts,'match'=>$match]);
     }
     
     public function delete(Party $party){
@@ -98,7 +122,7 @@ class PartyController extends Controller
     
     public function select(Request $request,Select_pokemon $select_pokemon,Party $party){
         
-         $validator = $request->validate([       //ここがバリデーション部分
+         $validator = $request->validate([       //
             'select_id.0' => 'required',
             'select_id.1' => 'required',
             'select_id.2' => 'required',
@@ -115,16 +139,41 @@ class PartyController extends Controller
         $select_pokemon->third_pokemon_id = $select3;
         $select_pokemon->party_id = $id;
         $select_pokemon->timestamps = false;//タイムスタンプのない保存
-        $select_pokemon->save();
         
-        $party->match = $party->match++;
+        //試合数を1増やす
+        $party->match = ++$party->match;
         $party->save();
+        $select_pokemon->save(); //保存部分
         
-        //showに渡すデータ
-        $id = $party->id;
+        //sessionメッセージ
+         if ($select3) {
+            $messageKey = 'successMessage';
+            $flashMessage = '記録しました';
+        } else {
+            $messageKey = 'errorMessage';
+            $flashMessage = '選出したポケモンを3匹選んでください';
+        }
+        
+        
+        //選出率選出のためのデータ
         $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
+        foreach($pokemons_id as $pokemon){
+             $p_id= $pokemon->pokemons->pluck('id');
+        foreach($p_id as $i){
+        
+        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
+                                            ->orWhere('second_pokemon_id',$i)
+                                            ->orWhere('third_pokemon_id',$i)
+                                                     ->count();
+        }//選出された回数
+        
+        $match = $party->match;//総試合数
+       
+        
       
-        return redirect()->route('party.show',['party' => $id]);
-        //return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id]); 
+        return redirect()->route('party.show',['party' => $id])->with($messageKey, $flashMessage)
+                                                               ->with(['counts'=>$counts,'match'=>$match]);
+                                                              
     }
+}
 }
