@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartyController; 
 
-
+use App\Models\Party;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +15,9 @@ use App\Http\Controllers\PartyController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/ttt', function () {
+    return view('parties/microsoft_trans');
+});
 
 
 Route::get('/', function () {
@@ -27,7 +29,10 @@ Route::get('/bootstrap', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $id = Auth::user ()->id;
+        $parties = Party::where('user_id',$id)->get();
+    
+    return view('parties/party')->with(['parties' => $parties]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(PartyController::class)->middleware(['auth'])->group(function(){
@@ -48,5 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
 
 require __DIR__.'/auth.php';

@@ -2,6 +2,7 @@
 
  @section('title','POKEFORM_party')
     @section('content')
+    
       <div class="content-title">
         <h1 class="fs-1 fw-bold">パーティー登録</h1>
       </div>

@@ -14,6 +14,42 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
 .blog-header{
  background-color: white
 }
+.welcome-page{
+    background-color: white;
+}
+.welcome-btn{
+    transition: 0.5s;
+}
+/*login*/
+.login-form{
+    background-color: white;
+}
+.login {
+  margin: 0;
+  padding: 0;
+ background-color: white;
+ 
+}
+.login-text{
+    color: black;
+    
+}
+#login .container #login-row #login-column #login-box {
+ 
+  max-width: 600px;
+  
+  border: 1px solid #9C9C9C;
+  background-color: #FFFAF2;
+}
+#login .container #login-row #login-column #login-box #login-form {
+  padding: 20px;
+}
+#login .container #login-row #login-column #login-box #login-form #register-link {
+  margin-top: -85px;
+}
+
+/*redister*/
+
 
 
 /*header　*/
@@ -39,12 +75,17 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
 .menu + .menu{
   border-left: 1px solid #000;
 }
-
-.menu:hover {
-  color:#ff9607;
-  text-decoration: underline;
+.menu:hover{
+    text-decoration: underline;
+}
+.logout-btn{
+    transition: 0.5s;
 }
 
+/*footer*/
+.footer{
+    background-color: #333333;
+}
 
 
 /*party.blade */
@@ -123,11 +164,97 @@ font-family: 'Times New Roman','Arial',YuGothic,'Yu Gothic','Hiragino Kaku Gothi
     background-color: white;
 }
 .type{
-    background-color: gray;       /* 背景色の指定 */
+    background-color: #C0C0C0;       /* 背景色の指定 */
    border-radius: 1em;          /* 角丸の指定 */
-   color: white
+   color: white;
+   
+}
+.probability p{
+    position: relative;
+    display: inline-block;
+    padding: 15px 50px 15px 40px;
+    color: #ffffff;
+    border-radius: 35px 0 0 35px;
+    background:#FFCC00;
+    
+}
+.probability p:before{
+        position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #ffffff;
+
+}
+.probability{
+    text-align: center;
+    border-color: orange;
 }
 
+.switch_label {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.switch_label input{
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+.base {
+   width: 56px;
+  border-radius: 15px;
+  height: 32px;
+  background-color: #fcdc5c;
+}
+.title {
+ font-size: 15px;
+}
+input:checked ~ .base {/*トグルスイッチに反応して背景の変更*/
+  background-color: #ffae27;
+  transition: 0.5s;
+}
+.circle {
+   position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background-color: #ffae27;
+}
+input:checked ~ .circle {
+  transform: translateX(100%);
+  background-color: white;
+  transition: 0.5s;
+}
+.switch {
+  position: relative;
+}
+
+.memo{
+     border-bottom: dashed 2px #6594e0;
+}
+.winrate{
+    color: #fffffb;
+  margin:1.4em 0;
+  padding: 0.3em 0 0.3em 0.5em;
+  background: #239dda;
+  border-radius: 30px 0px 0px 30px;
+  box-shadow: 0 5px 3px #c8baa7;
+}
+.winrate::before{
+    color: #fffffb;
+  content: '●';
+}
+.pokemon_name{
+    font-size: 25px;
+    font-family: serif;
+}
 /*create.party.blade*/
 .create-party{
     background-color: white;

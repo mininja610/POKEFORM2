@@ -21,21 +21,38 @@ class PartyController extends Controller
     }
     
     public function show(Party $party)
-    {
+    {   $match = $party->match;//総試合数
         $id = $party->id;
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
+        $pokemons = Party::where('id',$id)->with('pokemons')->get();
+                foreach($pokemons as $pokemon_pro){//$pokemonsはコレクションで、$pokemon_proで初めて6匹とのリレーションを持つparty情報になる→したがい、ポケモン1匹ずつの扱いにはもう一回foreachと->'pokemons'が必要
+                                                                                                
+           foreach($pokemon_pro->pokemons as $pokemon){//$pokemon_はparty情報なので、そこから->することで6匹のポケモン情報が抜け出せる                                                                                      //foreach($p_id as $i){
         
-         foreach($pokemons_id as $pokemon){
-             $p_id= $pokemon->pokemons->pluck('id');
-        foreach($p_id as $i){
-        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
-                                            ->orWhere('second_pokemon_id',$i)
-                                            ->orWhere('third_pokemon_id',$i)
-                                                     ->count();}}//選出された回数
-        $match = $party->match;//総試合数                                             
+         $count = \App\Models\Select_pokemon::where('first_pokemon_id',$pokemon->id)->where('party_id',$party->id)//party_idとの一致を追加
+                                                 ->orWhere('second_pokemon_id',$pokemon->id)->where('party_id',$party->id)
+                                                 ->orWhere('third_pokemon_id',$pokemon->id)->where('party_id',$party->id)                                                                                                     //}//選出された回数
+                                                 ->count();
+        if($match ==0){
+        $probability = 0;
+        }else{
+        $probability = intval($count*100/$match);
+        }
+        $pokemon['probability'] = $probability;//$pokemonに新たに選出率を付随する
+        //この時点で、$pokemon_proが$probabilityを付随した$partyになる
+        }}
+        //dd($pokemon_pro->pokemons);したがい、このデバックでポケモン6匹の$probabilityを付随した情報が得られる
+        $pokemon_pro = $pokemon_pro->pokemons;
         
+         //partyの勝率を計算する処理
+        $win = \App\Models\Select_pokemon::where('result',1)->where('party_id',$party->id)->count();
+        if($win ==0){
+            $winrate = 0;
+        }else{
+            $winrate = intval($win*100/$match);
+        }
+        $party['winrate'] = $winrate;
       
-        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id,'counts'=>$counts,'match'=>$match]);
+        return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro,]);
         
        
       
@@ -57,27 +74,59 @@ class PartyController extends Controller
         $pokemon_id = $input_pokemons->pluck('id')->all();
         //id値のみ取得
         
+        //保存
         $party->fill($input_party)->save();
         $party->pokemons()->attach($pokemon_id);
-        //保存
         
-        $id = $party->id;
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
         //showに渡すデータ
+        $match = $party->match;//総試合数
+        $id = $party->id;
+        $pokemons = Party::where('id',$id)->with('pokemons')->get();
+                foreach($pokemons as $pokemon_pro){//$pokemonsはコレクションで、$pokemon_proで初めて6匹とのリレーションを持つparty情報になる→したがい、ポケモン1匹ずつの扱いにはもう一回foreachと->'pokemons'が必要
+                                                                                                
+           foreach($pokemon_pro->pokemons as $pokemon){//$pokemon_はparty情報なので、そこから->することで6匹のポケモン情報が抜け出せる                                                                                      //foreach($p_id as $i){
         
-        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id]);       
+         $count = \App\Models\Select_pokemon::where('first_pokemon_id',$pokemon->id)->where('party_id',$party->id)//party_idとの一致を追加
+                                                 ->orWhere('second_pokemon_id',$pokemon->id)->where('party_id',$party->id)
+                                                 ->orWhere('third_pokemon_id',$pokemon->id)->where('party_id',$party->id)                                                                                                     //}//選出された回数
+                                                 ->count();
+        
+        if($match ==0){
+        $probability = 0;
+        }else{
+        $probability = intval($count*100/$match);
+        }
+        $pokemon['probability'] = $probability;//$pokemonに新たに選出率を付随する
+        //この時点で、$pokemon_proが$probabilityを付随した$partyになる
+        }}
+        //dd($pokemon_pro->pokemons);したがい、このデバックでポケモン6匹の$probabilityを付随した情報が得られる
+        $pokemon_pro = $pokemon_pro->pokemons;
+        
+         //partyの勝率を計算する処理
+        $win = \App\Models\Select_pokemon::where('result',1)->where('party_id',$party->id)->count();
+        if($win ==0){
+            $winrate = 0;
+        }else{
+            $winrate = intval($win*100/$match);
+        }
+        $party['winrate'] = $winrate;
+        
+        return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro]);       
     }
     
     public function edit(Party $party){
         $id = $party->id;
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();//
+        $pokemons = Party::where('id',$id)->with('pokemons')->get();//
         
-         foreach($pokemons_id as $pokemon){
+         foreach($pokemons as $pokemon){
         
-         }
+         
     
         $name = $pokemon->pokemons->pluck('en_name');
-    
+        
+         //partyの勝率を計算する処理
+        
+         }
         return view('parties/edit')->with(['party' => $party,'name' =>$name]);
         
     }
@@ -96,25 +145,43 @@ class PartyController extends Controller
         $party->pokemons()->sync($pokemon_id);
         
         //showに渡すデータ
-        $id = $party->id;
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
-        
-        foreach($pokemons_id as $pokemon){
-             $p_id= $pokemon->pokemons->pluck('id');
-        foreach($p_id as $i){
-        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
-                                            ->orWhere('second_pokemon_id',$i)
-                                            ->orWhere('third_pokemon_id',$i)
-                                                     ->count();//選出された回数
-        }
-        }
         $match = $party->match;//総試合数
+        $id = $party->id;
+        $pokemons = Party::where('id',$id)->with('pokemons')->get();
+        foreach($pokemons as $pokemon_pro){//$pokemonsはコレクションで、$pokemon_proで初めて6匹とのリレーションを持つparty情報になる→したがい、ポケモン1匹ずつの扱いにはもう一回foreachと->'pokemons'が必要
+                                                                                                
+           foreach($pokemon_pro->pokemons as $pokemon){//$pokemon_はparty情報なので、そこから->することで6匹のポケモン情報が抜け出せる                                                                                      //foreach($p_id as $i){
+        
+         $count = \App\Models\Select_pokemon::where('first_pokemon_id',$pokemon->id)->where('party_id',$party->id)//party_idとの一致を追加
+                                                 ->orWhere('second_pokemon_id',$pokemon->id)->where('party_id',$party->id)
+                                                 ->orWhere('third_pokemon_id',$pokemon->id)->where('party_id',$party->id)                                                                                                     //}//選出された回数
+                                                 ->count();
+        
+        if($match ==0){
+        $probability = 0;
+        }else{
+        $probability = intval($count*100/$match);
+        }
+        $pokemon['probability'] = $probability;//$pokemonに新たに選出率を付随する
+        //この時点で、$pokemon_proが$probabilityを付随した$partyになる
+        }}
+        $pokemon_pro = $pokemon_pro->pokemons;
+        
+         //partyの勝率を計算する処理
+        $win = \App\Models\Select_pokemon::where('result',1)->where('party_id',$party->id)->count();
+        if($win ==0){
+            $winrate = 0;
+        }else{
+            $winrate = intval($win*100/$match);
+        }
+        $party['winrate'] = $winrate;
        
-        return view('parties/show')->with(['party' => $party,'pokemons_id' =>$pokemons_id,'counts'=>$counts,'match'=>$match]);
+        return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro]);
     }
     
     public function delete(Party $party){
         $party->pokemons()->detach();
+        $party->select_pokemons()->delete();
         $party->delete();
         
         return redirect('/parties');
@@ -140,6 +207,12 @@ class PartyController extends Controller
         $select_pokemon->party_id = $id;
         $select_pokemon->timestamps = false;//タイムスタンプのない保存
         
+        //勝敗判定となる値の保存
+        if($request->match_result == 1){
+            $select_pokemon->result = 1;
+        }else{
+            $select_pokemon->result = 0;
+        }
         //試合数を1増やす
         $party->match = ++$party->match;
         $party->save();
@@ -154,26 +227,41 @@ class PartyController extends Controller
             $flashMessage = '選出したポケモンを3匹選んでください';
         }
         
-        
-        //選出率選出のためのデータ
-        $pokemons_id = Party::where('id',$id)->with('pokemons')->get();
-        foreach($pokemons_id as $pokemon){
-             $p_id= $pokemon->pokemons->pluck('id');
-        foreach($p_id as $i){
-        
-        $counts[] = \App\Models\Select_pokemon::where('first_pokemon_id',$i)
-                                            ->orWhere('second_pokemon_id',$i)
-                                            ->orWhere('third_pokemon_id',$i)
-                                                     ->count();
-        }//選出された回数
-        
         $match = $party->match;//総試合数
-       
+        //選出率選出のためのデータ
+        $pokemons = Party::where('id',$id)->with('pokemons')->get();
+        foreach($pokemons as $pokemon_pro){//$pokemonsはコレクションで、$pokemon_proで初めて6匹とのリレーションを持つparty情報になる→したがい、ポケモン1匹ずつの扱いにはもう一回foreachと->'pokemons'が必要
+                                                                                                
+           foreach($pokemon_pro->pokemons as $pokemon){//$pokemon_はparty情報なので、そこから->することで6匹のポケモン情報が抜け出せる                                                                                      //foreach($p_id as $i){
         
-      
+         $count = \App\Models\Select_pokemon::where('first_pokemon_id',$pokemon->id)->where('party_id',$party->id)//party_idとの一致を追加
+                                                 ->orWhere('second_pokemon_id',$pokemon->id)->where('party_id',$party->id)
+                                                 ->orWhere('third_pokemon_id',$pokemon->id)->where('party_id',$party->id)                                                                                                     //}//選出された回数
+                                                 ->count();
+        
+        if($match ==0){
+        $probability = 0;
+        }else{
+        $probability = intval($count*100/$match);
+        }
+        $pokemon['probability'] = $probability;//$pokemonに新たに選出率を付随する
+        //この時点で、$pokemon_proが$probabilityを付随した$partyになる
+        }}
+        //dd($pokemon_pro->pokemons);したがい、このデバックでポケモン6匹の$probabilityを付随した情報が得られる
+        $pokemon_pro = $pokemon_pro->pokemons;
+        
+        //partyの勝率を計算する処理
+        $win = \App\Models\Select_pokemon::where('result',1)->where('party_id',$party->id)->count();
+        if($win ==0){
+            $winrate = 0;
+        }else{
+            $winrate = intval($win*100/$match);
+        }
+        $party['winrate'] = $winrate;
+        
         return redirect()->route('party.show',['party' => $id])->with($messageKey, $flashMessage)
-                                                               ->with(['counts'=>$counts,'match'=>$match]);
+                                                               ->with(['pokemon_pro'=>$pokemon_pro,'party'=>$party]);
                                                               
-    }
+    
 }
 }
