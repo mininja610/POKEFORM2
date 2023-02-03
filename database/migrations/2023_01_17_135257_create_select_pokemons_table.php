@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('first_pokemon_id');
             $table->unsignedBigInteger('second_pokemon_id');
             $table->unsignedBigInteger('third_pokemon_id');
+            $table->integer('result')->nullable();
            
            //外部キー制約 
             $table->foreign('first_pokemon_id')->references('id')->on('pokemons');

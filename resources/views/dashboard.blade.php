@@ -1,4 +1,7 @@
-<x-app-layout>
+@extends('bootstrap')
+
+ @section('title','POKEFORM_show')
+    @section('content')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -9,10 +12,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    {{ __("ログインに成功しました") }}
                 </div>
-                <a href="/parties">パーティー管理</a>
+                
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection
