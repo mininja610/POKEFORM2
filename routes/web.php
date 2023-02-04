@@ -15,8 +15,8 @@ use App\Models\Party;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/ttt', function () {
-    return view('parties/microsoft_trans');
+Route::get('/micro', function () {
+    return view('parties/micro');
 });
 
 

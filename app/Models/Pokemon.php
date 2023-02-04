@@ -10,7 +10,7 @@ class Pokemon extends Model
     protected $table = 'pokemons';
     protected $dates = ['publication_date', 'expiration_date', 'registration_date'];
     protected $fillable = [
-        'p_id', 'en_name', 'primary_type', 'secondary_type', 'ability1', 'ability2', 'hidden_ability',
+        'p_id', 'en_name', 'jp_name', 'primary_type', 'secondary_type', 'ability1', 'ability2', 'hidden_ability',
         'hp', 'attack', 'defense', 'special_attack', 'special_defense','speed',
         'total_stats', 'front_default', 'back_default', 'dream_world_front_default',
         'home_front_default', 'official_artwork_front_default', 'height', 'weight'
@@ -60,5 +60,9 @@ class Pokemon extends Model
     public function select_pokemons()   
 {
     return $this->hasMany(Select_pokemon::class);  
+}
+    public function histories()
+{
+    return $this->belongsToMany(History::class);
 }
 }

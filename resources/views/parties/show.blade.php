@@ -16,14 +16,14 @@
                     
                          <div class = 'pokemon_info col-lg-2 col-md-4 '>
                              <div class="poke mx-auto"> 
-                             <p class="mx-auto　pokemon_name">{{$pokemon_name->en_name}}</p>
+                             <p class="mx-auto　pokemon_name fs-4 fw-bold">{{$pokemon_name->jp_name}}</p>
                              <div class="imgarea">
                              <img src="<?php echo $pokemon_name['front_default'] ?>" alt="">
                                     <div class="probability progress-pie-chart"><p class="fw-bold fs-4">{{$pokemon_name->probability}}%</p></div>
                          </div>
-                             <div class="type_list row">
+                             {{--<div class="type_list row">
                              <h3 class='type fs-5 col text-center mr-3'>{{$pokemon_name->primary_type}}</h3><h3 class="type fs-5 text-center">{{$pokemon_name->secondary_type}}</h3>
-                             </div>
+                             </div>--}}
                              </div>
                         </div>
                    @endforeach
@@ -86,14 +86,14 @@
                         </div>
                     @foreach($pokemon_pro as $pokemon_img)
                         <div class = 'pokemon_info col-lg-2 col-md-4  mr-2'>
-                             <label for="{{$pokemon_img->en_name}}">
+                             <label for="{{$pokemon_img->jp_name}}">
                              <div class="imgarea">
                              <img src="<?php echo $pokemon_img['front_default'] ?>" alt="">
                              </div>
                              <div class="check"> 
                             
-                                <input class="col" type="checkbox"  name="select_id[]" value="{{$pokemon_img->id}}" id="{{$pokemon_img->en_name}}" />
-                               {{$pokemon_img->en_name}}</lavel>
+                                <input class="col" type="checkbox"  name="select_id[]" value="{{$pokemon_img->id}}" id="{{$pokemon_img->jp_name}}" />
+                               {{$pokemon_img->jp_name}}</lavel>
                              </div>
                              
                              
