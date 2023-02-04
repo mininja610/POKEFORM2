@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 
 class PokemonTableSeeder extends Seeder
 {
-     const CSV_FILENAME = '/../database/seeders/Pokedex_Cleaned.csv';
+     const CSV_FILENAME = '/../database/seeders/pokemon_jp_name.csv';
     /**
      * Run the database seeds.
      *
@@ -30,18 +30,9 @@ class PokemonTableSeeder extends Seeder
         $interpreter = new Interpreter();
         $interpreter->addObserver(function(array $row) {
             // 登録処理
-            $pokemon = \App\Models\Pokemon::create([
-                    'name' => $row[1],
-                    'primary_type' => $row[2],
-                    'secondary_type' => $row[3],
-                    'hp' => $row[5],
-                    'attack_power' => $row[6],
-                    'defensive_power' => $row[7],
-                    'special_attack_power' => $row[8],
-                    'special_defensive_power' => $row[9],
-                    'speed' => $row[10],
-                    'total' => $row[4],
-                    //
+            $pokemon = \App\Models\Pokejp::create([
+                    'jp_name' => $row[1],
+                   'p_id' =>$row[0],
                ]);
         });
 

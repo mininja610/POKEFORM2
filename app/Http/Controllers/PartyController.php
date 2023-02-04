@@ -69,7 +69,7 @@ class PartyController extends Controller
         $input_party = $request['party'];
         
         
-        $input_pokemons = \App\Models\Pokemon::whereIn('en_name',[$request->p1,$request->p2,$request->p3,$request->p4,$request->p5,$request->p6])->get();
+        $input_pokemons = \App\Models\Pokemon::whereIn('jp_name',[$request->p1,$request->p2,$request->p3,$request->p4,$request->p5,$request->p6])->get();
        //送られた名前のポケモンの配列を作成
         $pokemon_id = $input_pokemons->pluck('id')->all();
         //id値のみ取得
@@ -122,7 +122,7 @@ class PartyController extends Controller
         
          
     
-        $name = $pokemon->pokemons->pluck('en_name');
+        $name = $pokemon->pokemons->pluck('jp_name');
         
          //partyの勝率を計算する処理
         
@@ -136,7 +136,7 @@ class PartyController extends Controller
          $input_party = $request['party'];
         
         
-        $input_pokemons = \App\Models\Pokemon::whereIn('en_name',[$request->p1,$request->p2,$request->p3,$request->p4,$request->p5,$request->p6])->get();
+        $input_pokemons = \App\Models\Pokemon::whereIn('jp_name',[$request->p1,$request->p2,$request->p3,$request->p4,$request->p5,$request->p6])->get();
        //送られた名前のポケモンの配列を作成
         $pokemon_id = $input_pokemons->pluck('id')->all();
         //id値のみ取得

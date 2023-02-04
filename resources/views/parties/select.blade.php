@@ -14,7 +14,7 @@
                     @foreach($pokemon->pokemons as $pokemon_name)
                          <div class = 'pokemon_info col-lg-2 col-md-4 '>
                              <div class="poke mx-auto"> 
-                             <p class="mx-auto">{{$pokemon_name->en_name}}</p>
+                             <p class="mx-auto">{{$pokemon_name->jp_name}}</p>
                              <div class="imgarea">
                              <img src="<?php echo $pokemon_name['front_default'] ?>" alt="">
                              </div>
