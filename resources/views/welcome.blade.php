@@ -19,7 +19,7 @@
                      <a href="{{ route('login') }}" class="btn btn-outline-primary welcome-btn">ログインして利用を開始する</a>
                        
                     </div>
-                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="{{ asset('images/welcome_party.jpg')}}" data-holder-rendered="true">
+                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" src="{{ asset('images/welcome_party2.jpg')}}" data-holder-rendered="true">
                   </div>
                 </div>
                 <div class="col-md-6">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartyController; 
+use App\Http\Controllers\HistoryController; 
 
 use App\Models\Party;
 /*
@@ -15,9 +16,6 @@ use App\Models\Party;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/micro', function () {
-    return view('parties/micro');
-});
 
 
 Route::get('/', function () {
@@ -44,9 +42,24 @@ Route::controller(PartyController::class)->middleware(['auth'])->group(function(
     Route::get('/parties/{party}/edit', 'edit')->name('party.edit');
     Route::put('/parties/{party}','update')->name('party.update');
     Route::get('/parties/{party}', 'show')->name('party.show');
+    
+    
     Route::delete('/parties/{party}', 'delete')->name('party.delete');
     
 });
+
+Route::controller(HistoryController::class)->middleware(['auth'])->group(function(){
+    
+    Route::get('/histories/create', 'create')->name('history.create');
+    Route::get('/histories/', 'history')->name('history');
+    Route::post('/histories/', 'store')->name('history.store');
+
+   
+});    
+    
+
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

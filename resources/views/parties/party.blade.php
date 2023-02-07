@@ -16,10 +16,10 @@
             <li class='list_group_item party row py-2'>
                 <h2 class='title fs-3 fw-bold col-xl-2 col-sm-3 text-truncate'>「{{ $party->title }}」</h2>
                 <p class='col-2 text-truncate d-inline-block' style="max-width: 1000px;">{{ $party->content }}</p>
-                <div class="show_btn col-xl-2 col-sm-3 offset-xl-3 offset-sm-1">
-                <a href="/parties/{{ $party->id }}" class="fw-bolder">確認する</a>
+                <div class="show_btn col-xl-2 col-sm-3 offset-xl-3">
+                <a href="/parties/{{ $party->id }}" class="fw-bolder col">確認する</a>
                 </div>
-                <div class="col-xl-2 col-sm-3 offset-xl-1 offset-sm-1">
+                <div class="col-xl-2 offset-xl-1">
                 <a class="btn btn-danger" data-toggle="modal" data-target="#PartyModal" data-title="{{ $party->title }}" data-url="{{ route('party.delete',['party' => $party]) }}" >削除する</a> 
                 </div>
            
@@ -28,7 +28,9 @@
             @endforeach
             </ul>
         </div>
-      
+        <div class="paginate pt-3 mx-auto">
+      {{--{{ $parties->links() }}--}}
+        </div>
 
        <div class="modal fade" id="PartyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     //form-inline:文字の量に合わせてモーダルの大きさが変化する

@@ -7,6 +7,8 @@ use App\Models\Party;
 use App\Models\Select_pokemon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+	
+use Illuminate\Pagination\Paginator;
 
 use App\Http\Requests\PartyRequest;
 use App\Http\Requests\Select_pokemonRequest;
@@ -15,7 +17,8 @@ class PartyController extends Controller
 {
     public function party(Party $party)
     {   $id = Auth::user ()->id;
-        $parties = Party::where('user_id',$id)->get();
+        $parties = Party::where('user_id',$id)->paginate(5);
+        
         return view('parties/party')->with(['parties' => $parties]);  
       
     }
@@ -51,7 +54,9 @@ class PartyController extends Controller
             $winrate = intval($win*100/$match);
         }
         $party['winrate'] = $winrate;
-      
+        $party['win'] = $win;
+        $party['lose'] = $match - $win;
+        
         return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro,]);
         
        
@@ -110,6 +115,8 @@ class PartyController extends Controller
             $winrate = intval($win*100/$match);
         }
         $party['winrate'] = $winrate;
+        $party['win'] = $win;
+        $party['lose'] = $match - $win;
         
         return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro]);       
     }
@@ -175,6 +182,8 @@ class PartyController extends Controller
             $winrate = intval($win*100/$match);
         }
         $party['winrate'] = $winrate;
+        $party['win'] = $win;
+        $party['lose'] = $match - $win;
        
         return view('parties/show')->with(['party' => $party,'pokemon_pro' =>$pokemon_pro]);
     }
@@ -186,6 +195,7 @@ class PartyController extends Controller
         
         return redirect('/parties');
     }
+  
     
     public function select(Request $request,Select_pokemon $select_pokemon,Party $party){
         
@@ -258,6 +268,8 @@ class PartyController extends Controller
             $winrate = intval($win*100/$match);
         }
         $party['winrate'] = $winrate;
+        $party['win'] = $win;
+        $party['lose'] = $match - $win;
         
         return redirect()->route('party.show',['party' => $id])->with($messageKey, $flashMessage)
                                                                ->with(['pokemon_pro'=>$pokemon_pro,'party'=>$party]);
