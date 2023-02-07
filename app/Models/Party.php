@@ -20,6 +20,7 @@ class Party extends Model
         'match' => '0',
     ];
     
+    
     public function pokemons()
 {
     return $this->belongsToMany(Pokemon::class);

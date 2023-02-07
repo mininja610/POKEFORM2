@@ -7,7 +7,7 @@
             @if(Auth::user()->can('view', $party))
             <div class ="row">
                 <h2 class='title fs-1 fw-bold col'>「{{ $party->title }}」</h2>
-                <h2 class="col mt-5 offset-8 winrate">勝率 {{$party->winrate}}%</h2> </div>
+                <h2 class="col mt-5 offset-8 winrate">勝率 {{$party->winrate}}% 　　　{{$party->win}}勝  {{$party->lose}}敗</h2> </div>
                 <p class='body fs-2 text-truncate memo'>{{ $party->content }}</p>
             <div class="party_pokemon container">
                 <div class = 'pokemon_list row justify-content-md-center'> 
