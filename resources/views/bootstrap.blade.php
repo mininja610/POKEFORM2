@@ -7,16 +7,17 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('/css/pokeform.css')  }}" >
     
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.11/dist/vue.js"></script>
     <title>@yield('title')</title>
 </head>
 
 <body>
-    
+
 @include('layouts.header_test')
 
 @yield('content')
 
-@include('layouts.footer_test')
+
 
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

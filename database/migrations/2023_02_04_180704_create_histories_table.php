@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('format')->nullable();
             $table->integer('season')->nullable();
             $table->foreignId('user_id')->constrained();
+            $table->foreignId('party_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

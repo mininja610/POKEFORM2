@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartyController; 
 use App\Http\Controllers\HistoryController; 
+use App\Http\Controllers\TypeaheadController;
+
 
 use App\Models\Party;
 /*
@@ -16,6 +18,13 @@ use App\Models\Party;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/*AutoComplate用*/
+Route::get('/home', [TypeaheadController::class, 'index']);
+Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch']);
+
+
+
+// API用
 
 
 Route::get('/', function () {
@@ -53,7 +62,7 @@ Route::controller(HistoryController::class)->middleware(['auth'])->group(functio
     Route::get('/histories/create', 'create')->name('history.create');
     Route::get('/histories/', 'history')->name('history');
     Route::post('/histories/', 'store')->name('history.store');
-
+    Route::get('/histories/search','search')->name('history.search');
    
 });    
     
