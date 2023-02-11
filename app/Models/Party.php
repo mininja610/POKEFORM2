@@ -37,6 +37,10 @@ public function select_pokemons()
 {
     return $this->hasMany(Select_pokemon::class);  
 }
+public function histories()   
+{
+    return $this->hasMany(History::class);  
+}
 
 
 }

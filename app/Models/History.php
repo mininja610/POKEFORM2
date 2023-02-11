@@ -14,11 +14,16 @@ class History extends Model
                     'content',
                     'format',
                     'season',
-                    'user_id'
+                    'user_id',
+                    'party_id',
                     ];
 public function pokemons()
 {
     return $this->belongsToMany(Pokemon::class);
+}
+public function party()
+{
+     return $this->belongsTo(Party::class);
 }
 
 }

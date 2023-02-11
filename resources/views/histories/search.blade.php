@@ -10,14 +10,13 @@
         <div class='content-title'>
         <h1 class="fs-1 fw-bold">対戦履歴</h1>
         </div>
-        
-    <div class='parties container px-3 border border-5 rounded-3 border-white'>
+        <div class='parties container px-3 border border-5 rounded-3 border-white'>
         <div class="search">
-             <h2 class="text-align-center fw-bold create-border">絞り込み検索</h2>
+             <h2 class="create-border fw-bold">絞り込み</h2>
             <form action="{{ route('history.search') }}" method="GET">
             @csrf
             <div class="history-search">
-                <div class="history-form">
+                <div class="history-form ">
                     <label for="">勝敗
                     <div class="searchbox">
                         <select name="result" data-toggle="select">
@@ -28,9 +27,9 @@
                     </div>
                     </label>
                 </div>
-                <div class="history-form">
+                <div class="history-form ">
                     <label for="">ルール
-                        <div class="searchbox">
+                    <div class="searchbox">
                         <select name="format" data-toggle="select">
                             <option value="" checked>全て</option>
                             <option value="1">シングル</option>
@@ -39,7 +38,7 @@
                     </div>
                     </label>
                 </div>
-                <div class="history-form">
+                <div class="history-form ">
                     <label for="">シーズン
                     <div class="searchbox">
                         <select name="season" data-toggle="select">
@@ -63,42 +62,48 @@
                     </div>
                     </label>
                 </div>
-                </div>
-            <div class="row">    
-                <div class="search_btn offset-10 col-2">
+            </div>
+             <div class="row">
+                <div class="col-2 offset-8 form-btn">
+                    <a class="form-btn" href="/histories">リセットする</a>
+                    </div>
+                <div class="show_btn  col-2">
                     <input type="submit" class="btn-submit " value="検索">
                 </div>
+
             </div>
         </div>
         </form>
+        @if (!empty($search_results))
+
         
             <ul class="list_group py-3">
-            @foreach ($histories as $history)
+            @foreach ($search_results as $result)
             
             <li class='list_group_item party  py-2'>
                 <div class="row">
-                    @if($history->result == 1)
+                    @if($result->result == 1)
                     <h2 class="col-2 win">win</h2>
                     @else
                     <h2 class="col-2 lose">lose</h2>
                     @endif
-                    @if ($history->format == 1)
+                    @if ($result->format == 1)
                     <h2 class='title fs-3 fw-bold col-2 offset-5 single'>シングル</h2>
                     @else
                     <h2 class='title fs-3 fw-bold col-2 offset-5 double'>ダブル</h2>
                     @endif
 
-                    <h2 class=' title fs-3 fw-bold col-2 offset season '>シーズン{{ $history->season }}</h2>
-                    <p class="col-6 text-truncate" style="max-width:80%;">{{$history->content}}</p>
+                    <h2 class=' title fs-3 fw-bold col-2 offset season '>シーズン{{ $result->season }}</h2>
+                    <p class="col-6 text-truncate" style="max-width:80%;">{{$result->content}}</p>
                </div>
             <div class="row pokemon_img">   
-                @foreach($history->pokemons as $pokemon )
+                @foreach($result->pokemons as $pokemon )
                 <img class="history-pokemon col-1 " src="<?php echo $pokemon['front_default'] ?>" alt="">
                 @endforeach
-                    @if($history->party_id == null)
+                    @if($result->party_id == null)
                     <h2 class="offset-2 col-2">未登録</h2>
                     @else
-                    <h2 class="offset-1 col-5">使用したパーティー:{{$history->party->title}}</h2>
+                    <h2 class="offset-1 col-5">使用したパーティー:{{$result->party->title}}</h2>
                     @endif
             </div>        
             </li>
@@ -106,10 +111,15 @@
             @endforeach
             </ul>
         </div>
+    @else
+        <div class='parties container px-3 border border-5 rounded-3 border-white'>
+            <h2>戦闘履歴がありません</h2>
+        </div>
+    @endif
     <div class="pagination">
-        @if(count($histories)>0) 
-        {{ $histories->links() }}
+        @if(count($search_results)>0) 
+        {{ $search_results->links() }}
         @endif
     </div>
-     
+    
 @endsection

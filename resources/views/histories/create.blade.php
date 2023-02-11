@@ -20,7 +20,7 @@
                               <span class="title-toggle fw-bold text-align-center" id="text">負け</span>
                               </div>
                     </label>
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                             <div class="form-check-inline">
                               <input class="form-check-input custom" type="radio" id="inlineCheckbox1" name="history[format]" checked value="1">
                               <label class="form-check-label" for="inlineCheckbox1">シングル</label>
@@ -30,13 +30,13 @@
                               <label class="form-check-label" for="inlineCheckbox2">ダブル</label>
                             </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-1">
                             <div class="form-check-inline">
                               <input class="form-check-input" type="radio" id="inlineCheckbox1" name="history[season]" value="1">
                               <label class="form-check-label" for="inlineCheckbox1">シリーズ1</label>
                             </div>
                             <div class="form-check-inline">
-                              <input class="form-check-input" type="radio" id="inlineCheckbox2" name="history[season]" value="2">
+                              <input class="form-check-input" type="radio" id="inlineCheckbox2" name="history[season]" value="2" checked>
                               <label class="form-check-label" for="inlineCheckbox2">シリーズ2</label>
                             </div>
                             <div class="form-check-inline">
@@ -44,37 +44,50 @@
                               <label class="form-check-label" for="inlineCheckbox3">シリーズ3</label>
                             </div>
                     </div>
+                    <div class="form-group w-25 mt-1">
+                    <label for="category-id ">{{ __('使用した登録パーティー') }}</label>
+                    <select class="form-control" id="party-id" name="history[party_id]">
+                       
+                            <option value="">登録しない</option>
+                            @foreach($parties as $party)
+                            <option value="{{$party->id}}" name="history[party_id]">{{$party->title}}</option>
+                            @endforeach
+                    </select>
+                  </div>
                 </div>
-                            <div class="body">
-                <h2 class="fs-2 fw-bold create-border">メモ</h2>
-                <textarea name="history[content]" value="{{ old('history.content') }}"></textarea>
-                <p class="title__error" style="color:red">{{ $errors->first('history.content') }}</p>
-                </div>
+               
            <div class="party_pokemon">
                <h1 class="fs-2 fw-bold create-border ">ポケモン</h1>
                <ul id="pokemon_input_list" class="create-list">
                    
                <li class = input_list>
-                   <input id="p1" name="p1" type="text" placeholder="ポケモン名" value="{{ old('p1') }}">
+                   <input id="" name="p1" type="text" placeholder="ポケモン名" value="{{ old('p1') }}" autocomplete="on" list="food">
+                   
                </li>
                <li class = input_list>
-                   <input id="p2" name="p2" type="text" placeholder="ポケモン名" value="{{ old('p2') }}">
+                   <input id="" name="p2" type="text" placeholder="ポケモン名" value="{{ old('p2') }}" autocomplete="on" list="food">
                </li>
                <li class = input_list>
-                   <input id="p3" name="p3" type="text" placeholder="ポケモン名" value="{{ old('p3') }}">
+                   <input id="" name="p3" type="text" placeholder="ポケモン名" value="{{ old('p3') }}" autocomplete="on" list="food">
                </li>
                <li class = input_list>
-                   <input id="p4" name="p4" type="text" placeholder="ポケモン名" value="{{ old('p4') }}">
+                   <input id="" name="p4" type="text" placeholder="ポケモン名" value="{{ old('p4') }}">
                </li>
                <li class = input_list>
-                   <input id="p5" name="p5" type="text" placeholder="ポケモン名" value="{{ old('p5') }}">
+                   <input id="" name="p5" type="text" placeholder="ポケモン名" value="{{ old('p5') }}">
                </li>
                <li class = input_list>
-                   <input id="p6" name="p6" type="text" placeholder="ポケモン名" value="{{ old('p6') }}">
+                   <input id="" name="p6" type="text" placeholder="ポケモン名" value="{{ old('p6') }}">
                </li>
                </ul>
                <p class="title__error" style="color:red">{{ $errors->first('p1') }}</p>
             </div>
+             <h2 class="fs-2 fw-bold create-border">メモ</h2>
+              <div class="body">
+               
+                <textarea name="history[content]" value="{{ old('history.content') }}" class="w-100"></textarea>
+                <p class="title__error" style="color:red">{{ $errors->first('history.content') }}</p>
+                </div>
             <div class="row">
                     <div class="show_btn col-2">
              <a href="/histories">戻る</a>

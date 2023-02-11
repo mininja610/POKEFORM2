@@ -291,18 +291,137 @@ display       : inline-block;
 
 
 /* history*/
-.single{
-  color: #fffffb;
-  margin:1.4em 0;
-  padding: 0.3em 0 0.3em 0.5em;
-  background: #239dda;
-  border-radius: 30px 0px 0px 30px;
-  box-shadow: 0 5px 3px #c8baa7;
+.single {
+    display: inline-block;
+    position: relative;
+    padding: .3em .7em;
+    border-radius: 50px 0 0 50px;
+    background-color: #2589d0;
+    color: #fff;
 }
-.single::before{
-  color: #fffffb;
-  content: '●';
+
+.single::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 13px;
+    border-radius: 50%;
+    background: #fff;
 }
+.double {
+    display: inline-block;
+    position: relative;
+    padding: .3em .7em;
+    border-radius: 50px 0 0 50px;
+    background-color: #f69c1e;
+    color: #fff;
+}
+
+.double::before {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 13px;
+    border-radius: 50%;
+    background: #fff;
+}
+.season{
+    display: inline-block;
+    position: relative;
+    padding: .3em .7em;
+    border-radius: 50px 0 0 50px;
+    background-color: #41cb25;
+    color: #fff;
+}
+.season::before{
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 13px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.history-search{
+    display: flex;
+    margin-bottom: 20px;
+}
+.history-form{
+    margin-left: 10px;
+    
+}
+.search-btn{
+    float: right;
+}
+.searchbox {
+    position: relative;
+}
+
+.searchbox::before,
+.searchbox::after {
+    position: absolute;
+    content: '';
+    pointer-events: none;
+}
+
+.searchbox::before {
+    right: 0;
+    display: inline-block;
+    width: 2.8em;
+    height: 2.8em;
+    border-radius: 0 3px 3px 0;
+    background-color: #2589d0;
+    content: '';
+}
+
+.searchbox::after {
+    position: absolute;
+    top: 50%;
+    right: 1.4em;
+    transform: translate(50%, -50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    content: '';
+}
+
+.searchbox select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    min-width: 230px;
+    height: 2.8em;
+    padding: .4em 3.6em .4em .8em;
+    border: 2px solid #58b3f3;
+    border-radius: 3px;
+    color: #333333;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.searchbox select:focus {
+    outline: 1px solid #58b3f3;
+}
+.lose{
+    padding: .3em .9em;
+    border-left: 8px solid #023b64;
+    background-color: #098afb;
+    color: #fafafa;
+}
+.win{
+    padding: .3em .7em;
+    border-left: 8px solid #9b0808;
+    background-color: #ef2e2e;
+    color: #fafafa;
+}
+
+/*histories/search*/
+
+
 /*footer*/
 .blog_footer{
     background-color:#1a1a1a; 
