@@ -23,7 +23,6 @@ Route::get('/home', [TypeaheadController::class, 'index']);
 Route::get('/autocomplete-search', [TypeaheadController::class, 'autocompleteSearch']);
 
 
-
 // API用
 
 

@@ -2,10 +2,12 @@
   
     @section('title','POKEFORM_welcome')
     @section('content')
+    
     <div class="welcome-page border border-5 rounded-3 border-white">
     <div class="content-title">
         <h1 class="fs-1 fw-bold">POKEFORMへようこそ</h1>
       </div>
+      
                <div class="row mb-2">
                 <div class="col-md-6">
                   <div class="card flex-md-row mb-4 shadow-sm h-md-250">
@@ -40,11 +42,12 @@
               <div class="p-3 mb-3 bg-light rounded">
         <a class="font-italic fw-bold fs-3 text-black">まだ登録していない方は</a><a href="{{ route('register') }}" class="font-italic fw-bold fs-3">こちら</a>
         
-                
-                
+               </div>
+
+   
 
         </div>
-    </div>
+    
     
     
  @endsection
