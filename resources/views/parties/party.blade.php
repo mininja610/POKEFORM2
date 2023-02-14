@@ -29,9 +29,9 @@
             </ul>
         </div>
         <div class="pagination">            
-      {{--@if(count($parties)>0) 
+      @if(count($parties)>5) 
       {{ $parties->links() }}
-      @endif--}}
+      @endif
         </div>
 
        <div class="modal fade" id="PartyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
