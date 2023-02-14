@@ -2,7 +2,10 @@
   
     @section('title','POKEFORM_welcome')
     @section('content')
-    
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/vue-simple-suggest"></script>
+<link rel="stylesheet" href="https://unpkg.com/vue-simple-suggest/dist/styles.css">
     <div class="welcome-page border border-5 rounded-3 border-white">
     <div class="content-title">
         <h1 class="fs-1 fw-bold">POKEFORMへようこそ</h1>
@@ -35,7 +38,7 @@
                       <p class="card-text mb-auto">戦ったパーティーと勝敗、その際のメモを保存することができます</p>
                       <a href="{{ route('login') }}" class="btn btn-outline-success welcome-btn">ログインして利用を開始する</a>
                     </div>
-                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="dm%3E" data-holder-rendered="true" style="width: 200px; height: 250px;">
+                    <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" src="{{ asset('images/welcome_history.png')}}" data-holder-rendered="true" style="width: 200px; height: 250px;">
                   </div>
                 </div>
               </div>
@@ -47,7 +50,7 @@
    
 
         </div>
-    
+    </div>
     
     
  @endsection
