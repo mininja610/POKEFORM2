@@ -24,6 +24,7 @@
            <div class="party_pokemon">
                <h1 class="fs-2 fw-bold create-border ">ポケモン</h1>
                <ul id="pokemon_input_list">
+                <li class = input_list>
                    <div id="app">
                  <vue-simple-suggest 
                       v-model="selected" 
@@ -31,7 +32,6 @@
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
-               <li class = input_list>
                  <input  id="p1" name="p1" type="text" placeholder="ポケモン名" value="{{ old('p1') }}"> 
                   </vue-simple-suggest>
                     </div>

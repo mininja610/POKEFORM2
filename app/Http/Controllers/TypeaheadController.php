@@ -21,7 +21,9 @@ class TypeaheadController extends Controller
                 array_push($arr,$pokemon->jp_name);
                 
             }
-            return $arr;
+            $array_slice = array_slice($arr,0,802);
+            
+            return $array_slice;
           //$query = $request->get('query');
           //$filterResult = User::where('name', 'LIKE', '%'. $query. '%')->get(5);
           //return response()->json($pokemons);
