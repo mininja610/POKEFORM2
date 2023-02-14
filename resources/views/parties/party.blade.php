@@ -34,6 +34,8 @@
       @endif
         </div>
 
+
+
        <div class="modal fade" id="PartyModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
     //form-inline:文字の量に合わせてモーダルの大きさが変化する
     <form role="form" class="form-inline" method="post" action="">
@@ -56,7 +58,8 @@
     </form>
 </div>
        
-<script>
+
+     <script>
     window.onload = function() {
         $('#PartyModal').on('shown.bs.modal', function (event) {
             var button = $(event.relatedTarget);//モーダルを呼び出すときに使われたボタンを取得
@@ -71,8 +74,7 @@
             modal.find('form').attr('action',url);
         });
     }
-</script>
-       
+</script>  
 
       
 @endsection

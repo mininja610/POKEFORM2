@@ -62,7 +62,6 @@
                             {{-- フラッシュメッセージ終わり --}}
         {{-- モーダル部分 --}}
         <div class="modal fade" id="SelectModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-    //form-inline:文字の量に合わせてモーダルの大きさが変化する
     <form role="form" class="form-inline modal-lg" method="post" action="">
     @csrf
    
@@ -111,6 +110,7 @@
             </div>
         </div>
     </form>
+</div>
 </div>
       
       <script>
