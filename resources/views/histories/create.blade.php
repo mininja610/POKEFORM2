@@ -64,8 +64,6 @@
                 <div id="app">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                <li class = input_list>
@@ -77,8 +75,6 @@
                    <div id="app1">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                    <input id="p2" name="p2" type="text" placeholder="ポケモン名" value="{{ old('p2') }}">
@@ -89,8 +85,6 @@
                     <div id="app2">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                    <input id="p3" name="p3" type="text" placeholder="ポケモン名" value="{{ old('p3') }}">
@@ -101,8 +95,6 @@
                     <div id="app3">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                    <input id="p4" name="p4" type="text" placeholder="ポケモン名" value="{{ old('p4') }}">
@@ -113,8 +105,6 @@
                     <div id="app4">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                    <input id="p5" name="p5" type="text" placeholder="ポケモン名" value="{{ old('p5') }}">
@@ -125,8 +115,6 @@
                     <div id="app5">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "802"
-                      :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
                    <input id="p6" name="p6" type="text" placeholder="ポケモン名" value="{{ old('p6') }}">
