@@ -27,7 +27,7 @@
                    <div id="app">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
@@ -40,7 +40,7 @@
                    <div id="app1">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
@@ -52,7 +52,7 @@
                     <div id="app2">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
@@ -64,7 +64,7 @@
                     <div id="app3">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
@@ -76,7 +76,7 @@
                     <div id="app4">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
@@ -88,7 +88,7 @@
                     <div id="app5">
                  <vue-simple-suggest 
                       v-model="selected" 
-                      :max-suggestions = "890"
+                      :max-suggestions = "802"
                       :min-length = "2"
                       :list="suggestionList" 
                       :filter-by-query="true">
