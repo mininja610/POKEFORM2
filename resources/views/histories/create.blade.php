@@ -136,7 +136,7 @@
              <a href="/histories">戻る</a>
              </div>
                 <div class="show_btn col-2 offset-8 mr-2">
-            <input type="submit" value="記録する" class="btn-submit "/>
+            <input type="submit" value="記録する" class="btn-submit "/></div>
         </form>
         </div>
         

@@ -93,7 +93,8 @@
              <a href="/parties">戻る</a>
              </div>
                 <div class="show_btn col-2 offset-8 mr-2">
-            <input type="submit" value="作成する" class="btn-submit "/>
+            <input type="submit" value="作成する" class="btn-submit "/></div>
+            </div>
         </form>
          
          <script>
@@ -104,7 +105,7 @@
       suggestionList: ['Canada', 'China', 'Cameroon', "Italy", "Iraq", "Iceland"]
     }, mounted(){
         axios.get('/autocomplete-search')
-            .then(response => this.suggestionList = response.data)
+            .then(response => console.log(response.data))
             .catch(error => console.log(error))
     }
    
