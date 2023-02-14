@@ -105,7 +105,7 @@
       suggestionList: ['Canada', 'China', 'Cameroon', "Italy", "Iraq", "Iceland"]
     }, mounted(){
         axios.get('/autocomplete-search')
-            .then(response => console.log(response.data))
+            .then(response => this.suggestionList = response.data)
             .catch(error => console.log(error))
     }
    
