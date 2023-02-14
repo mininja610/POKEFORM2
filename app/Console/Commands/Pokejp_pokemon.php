@@ -29,7 +29,7 @@ class Pokejp_pokemon extends Command
      */
     public function handle()
     {
-        for( $i=1;$i<891;$i++ ){
+        for( $i=1;$i<803;$i++ ){
 
     $poke_jp_name =  Pokejp:: where('p_id', $i)->get();
     $jp_poke = $poke_jp_name->pluck("jp_name")[0];

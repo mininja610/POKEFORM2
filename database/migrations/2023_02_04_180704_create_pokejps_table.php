@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pokejps', function (Blueprint $table) {
-            
+            $table->id();
             $table->string('jp_name')->nullable();
             $table->integer('p_id');
             $table->timestamps();
