@@ -11,7 +11,7 @@ use Illuminate\Database\Seeder;
 
 class PokemonTableSeeder extends Seeder
 {
-     const CSV_FILENAME = '/../database/seeders/pokemon_jp_name.csv';
+     const CSV_FILENAME = '/../database/seeders/pokemon_names.tsv';
     /**
      * Run the database seeds.
      *
@@ -23,7 +23,7 @@ class PokemonTableSeeder extends Seeder
 
         $config = new LexerConfig();
         // セパレーター指定、"\t"を指定すればtsvファイルとかも取り込めます
-        $config->setDelimiter(",");
+        $config->setDelimiter("\t");
         // 1行目をスキップ
         $config->setIgnoreHeaderLine(true);
         $lexer = new Lexer($config);
@@ -31,8 +31,8 @@ class PokemonTableSeeder extends Seeder
         $interpreter->addObserver(function(array $row) {
             // 登録処理
             $pokemon = \App\Models\Pokejp::create([
-                    'jp_name' => $row[1],
-                   'p_id' =>$row[0],
+                    'jp_name' => $row[3],
+                   'p_id' =>$row[1],
                ]);
         });
 
