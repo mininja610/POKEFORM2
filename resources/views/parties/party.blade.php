@@ -19,7 +19,7 @@
                 <div class="show_btn col-xl-2 col-sm-3 offset-xl-3">
                 <a href="/parties/{{ $party->id }}" class="fw-bolder col">確認する</a>
                 </div>
-                <div class="col-xl-2 offset-xl-1">
+                <div class="col-xl-2 col-2 offset-md-1">
                 <a class="btn btn-danger" data-toggle="modal" data-target="#PartyModal" data-title="{{ $party->title }}" data-url="{{ route('party.delete',['party' => $party]) }}" >削除する</a> 
                 </div>
            
@@ -28,7 +28,7 @@
             @endforeach
             </ul>
         </div>
-        <div class="pagination">            
+        <div class="pagination justify-content-center mt-2">            
       @if(count($parties)>5) 
       {{ $parties->links() }}
       @endif

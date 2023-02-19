@@ -47,7 +47,7 @@
                               <label class="form-check-label" for="inlineCheckbox3">シリーズ3</label>
                             </div>
                     </div>
-                    <div class="form-group w-25 mt-1">
+                    <div class="form-group w-50 mt-1">
                     <label for="category-id ">{{ __('使用した登録パーティー') }}</label>
                     <select class="form-control" id="party-id" name="history[party_id]">
                        
@@ -132,11 +132,11 @@
                 <p class="title__error" style="color:red">{{ $errors->first('history.content') }}</p>
                 </div>
             <div class="row">
-                    <div class="show_btn col-2">
+                    <div class="show_btn col-3 col-md-2">
              <a href="/histories">戻る</a>
              </div>
-                <div class="show_btn col-2 offset-8 mr-2">
-            <input type="submit" value="記録する" class="btn-submit "/></div>
+                <div class="show_btn col-2 offset-7 offset-md-8 mr-2">
+            <input type="submit" value="記録する" class="btn-submit btn btn-primary fw-bolder"/></div>
         </form>
         </div>
         

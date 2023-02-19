@@ -7,13 +7,13 @@
            <form action="/parties/{{$party->id}}" method="POST">
             @csrf
             @method('PUT')
-            <input type="hidden" name="party[user_id]" value={{ Auth::user()->id }}>
+            <input  type="hidden" name="party[user_id]" value={{ Auth::user()->id }}>
             <h2 class="fs-2 fw-bold create-border">構築名</h2>
-                <input type="text" name="party[title]" value="{{$party->title}}"/>
+                <input class="w-75" type="text" name="party[title]" value="{{$party->title}}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('party.title') }}</p>
                 <div class="body">
                 <h2 class="fs-2 fw-bold create-border">content</h2>
-                <textarea name="party[content]" value="{{$party->content}}"></textarea>
+                <textarea class="w-75" name="party[content]" value="{{$party->content}}"></textarea>
                 <p class="title__error" style="color:red">{{ $errors->first('party.content') }}</p>
             </div>
            <div class="party_pokemon">
@@ -40,11 +40,11 @@
             </ul>    
             </div>
             <div class="row">
-                    <div class="show_btn col-2">
+                    <div class="show_btn col-3 col-md-2">
              <a href="/parties">戻る</a>
              </div>
-                <div class="show_btn col-2 offset-8 mr-2">
-            <input type="submit" value="保存する" class="btn-submit "/>
+                <div class="show_btn col-2 offset-7 offset-md-8 mr-2">
+            <input type="submit" value="保存する" class="btn btn-primary fw-bolder "/>
         </form>
         </div>
     @endsection
