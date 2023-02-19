@@ -14,11 +14,11 @@
             @csrf
             <input type="hidden" class="" name="party[user_id]" value={{ Auth::user()->id }}>
             <h2 class="fs-2 fw-bold create-border">構築名</h2>
-                <input type="text" name="party[title]" placeholder="タイトル"　value="{{ old('party.title') }}"/>
+                <input class="w-75" type="text" name="party[title]" placeholder="タイトル"　value="{{ old('party.title') }}"/>
                 <p class="title__error" style="color:red">{{ $errors->first('party.title') }}</p>
                 <div class="body">
                 <h2 class="fs-2 fw-bold create-border">content</h2>
-                <textarea name="party[content]" value="{{ old('party.content') }}"></textarea>
+                <textarea class="w-75" name="party[content]" value="{{ old('party.content') }}"></textarea>
                 <p class="title__error" style="color:red">{{ $errors->first('party.content') }}</p>
                 </div>
            <div class="party_pokemon">
@@ -89,11 +89,11 @@
                <p class="title__error" style="color:red">{{ $errors->first('p1') }}</p>
             </div>
             <div class="row">
-                    <div class="show_btn col-2">
+                    <div class="show_btn col-md-2 col-3">
              <a href="/parties">戻る</a>
              </div>
-                <div class="show_btn col-2 offset-8 mr-2">
-            <input type="submit" value="作成する" class="btn-submit "/></div>
+                <div class="show_btn col-2 offset-md-8 offset-7 mr-2">
+            <input type="submit" value="作成する" class="btn btn-primary fw-bolder"/></div>
             </div>
         </form>
          

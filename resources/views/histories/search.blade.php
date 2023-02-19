@@ -15,7 +15,7 @@
              <h2 class="create-border fw-bold">絞り込み</h2>
             <form action="{{ route('history.search') }}" method="GET">
             @csrf
-            <div class="history-search">
+            <div class="history-search d-flex flex-wrap">
                 <div class="history-form ">
                     <label for="">勝敗
                     <div class="searchbox">
@@ -65,10 +65,10 @@
             </div>
              <div class="row">
                 <div class="col-2 offset-8 form-btn">
-                    <a class="form-btn" href="/histories">リセットする</a>
+                    <a class="btn-submit btn btn-primary fw-bolder" href="/histories">リセットする</a>
                     </div>
                 <div class="show_btn  col-2">
-                    <input type="submit" class="btn-submit " value="検索">
+                    <input type="submit" class="btn-submit btn btn-primary fw-bolder" value="検索">
                 </div>
 
             </div>
@@ -88,24 +88,25 @@
                     <h2 class="col-2 lose">lose</h2>
                     @endif
                     @if ($result->format == 1)
-                    <h2 class='title fs-3 fw-bold col-2 offset-5 single'>シングル</h2>
+                    <h2 class='title fs-3 fw-bold col-4 col-lg-3 col-xl-2 offset-1 offset-lg-3 offset-xl-5 single'>シングル</h2>
                     @else
-                    <h2 class='title fs-3 fw-bold col-2 offset-5 double'>ダブル</h2>
+                    <h2 class='title fs-3 fw-bold col-4 col-lg-3 col-xl-2 offset-1 offset-lg-3 offset-xl-5 double'>ダブル</h2>
                     @endif
 
-                    <h2 class=' title fs-3 fw-bold col-2 offset season '>シーズン{{ $result->season }}</h2>
-                    <p class="col-6 text-truncate" style="max-width:80%;">{{$result->content}}</p>
+                    <h2 class=' title fs-3 fw-bold col-4 col-lg-3 col-xl-2 offset season '>シーズン{{ $result->season }}</h2>
+                    
                </div>
             <div class="row pokemon_img">   
                 @foreach($result->pokemons as $pokemon )
                 <img class="history-pokemon col-1 " src="<?php echo $pokemon['front_default'] ?>" alt="">
                 @endforeach
                     @if($result->party_id == null)
-                    <h2 class="offset-2 col-2">未登録</h2>
+                    <h2 class="offset-1 col-5">使用したパーティー:未登録</h2>
                     @else
                     <h2 class="offset-1 col-5">使用したパーティー:{{$result->party->title}}</h2>
                     @endif
-            </div>        
+            </div>  
+                <div><p class="col-12 text-truncate" style="max-width:100%;">{{$result->content}}</p></div>
             </li>
             
             @endforeach
@@ -116,7 +117,7 @@
             <h2>戦闘履歴がありません</h2>
         </div>
     @endif
-    <div class="pagination">
+    <div class="pagination justify-content-center mt-2">
         @if(count($search_results)>0) 
         {{ $search_results->links() }}
         @endif

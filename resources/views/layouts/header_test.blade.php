@@ -7,8 +7,10 @@
         @csrf
         @auth
         <div class="row">
-        <p class="col-3 fs-3">ユーザー：{{ Auth::user()->name }}</p>@endauth
-        <button class="btn btn-lg btn-outline-secondary btn-block offset-8 col-1 fw-bold logout-btn" type="submit">logout</button></div>
+        <p class="col-7 col-lg-5 fs-3">ユーザー：{{ Auth::user()->name }}</p>
+        <button class="btn btn-lg btn-outline-secondary btn-block offset-3 offset-lg-6 col-2 col-lg-1 fw-bold logout-btn" type="submit">logout</button>
+        @endauth
+        </div>
         </form>    
         
 

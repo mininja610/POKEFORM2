@@ -31,14 +31,14 @@
                   
                 </div>
                 <div class="row">
-                    <div class="show_btn col-2">
+                    <div class="show_btn col-3">
              <a href="/parties">戻る</a>
              </div>
-              <div class="show_btn col-5 offset-1">
+              <div class="show_btn col-5 ">
               <a class="btn" data-toggle="modal" data-target="#SelectModal" data-pokemons="{{ $pokemon_pro }}" data-url="{{ route('party.select',['party' => $party,'pokemon_pro' => $pokemon_pro]) }}" >選出率チェッカー</a> 
                 </div>
              
-                <div class="show_btn col-3 offset-1">
+                <div class="show_btn col-3 ">
             <div class="edit text-nowrap"><a href="/parties/{{ $party->id }}/edit">編集する</a></div>
             </div>
             @endif
